@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# TODO: use the Gulp lint task. This requires adding support to Gulp
+#       for specific files.
+
+git diff --cached --name-only --relative \*.js |
+xargs -rd\\n eslint
+
+git diff --cached --name-only --relative \*.json |
+xargs -rd\\n jsonlint -q

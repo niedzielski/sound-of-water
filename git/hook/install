@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+declare hook_dir="$(git rev-parse --show-toplevel)"/.git/hooks
+declare pgm_dir="$(dirname "$(readlink -f "$0")")"
+
+for i in pre-commit; do
+  ln -s "$pgm_dir/$i"  "$hook_dir"
+done
