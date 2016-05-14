@@ -1,10 +1,10 @@
-const palette = {
-  white: 0xfffdec,
-  green: 0x8deb74,
-  red: 0xff0000,
-  gold: 0xffc600,
-  black: 0x111111,
-  yellow: 0xffffd8
+const Palette = {
+  WHITE: 0xfffdec,
+  GREEN: 0x8deb74,
+  RED: 0xff0000,
+  GOLD: 0xffc600,
+  BLACK: 0x111111,
+  YELLOW: 0xffffd8
 }
 
-export default palette
+export default Palette
