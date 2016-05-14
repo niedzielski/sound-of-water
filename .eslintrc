@@ -1,0 +1,17 @@
+rules:
+  eol-last: [0]
+  // TODO: use default value (UNIX) if standard is removed.
+  linebreak-style: [2, 'unix']
+  max-len: [1, 80]
+  max-params: [2, 4]
+  space-before-function-paren: [2, 'never']
+  wrap-iife: [0]
+  complexity: [1, 8]
+  no-floating-decimal: [0]
+  strict: [2, 'never']
+  prefer-const: [2]
+  spaced-comment: [1]
+env:
+  browser: true
+  commonjs: true
+extends: 'standard'
