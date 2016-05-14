@@ -1,0 +1,44 @@
+{
+  "name": "sound-of-water",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rndmem/sound-of-water",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rndmem/sound-of-water.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rndmem/sound-of-water/issues"
+  },
+  "scripts": {
+    "postinstall": "typings i",
+    "update": "ncu -u",
+    "clean": "rimraf node_modules typings",
+    "start": "gulp"
+  },
+  "engines": {
+    "node": "6.1.0"
+  },
+  "dependencies": {
+    "phaser": "2.4.7"
+  },
+  "devDependencies": {
+    "babel-core": "6.8.0",
+    "babel-loader": "6.2.4",
+    "babel-preset-es2015": "6.6.0",
+    "eslint": "2.9.0",
+    "eslint-config-standard": "5.3.1",
+    "eslint-plugin-promise": "1.1.0",
+    "eslint-plugin-standard": "1.3.2",
+    "gulp": "3.9.1",
+    "gulp-eslint": "2.0.0",
+    "gulp-jsonlint": "1.1.2",
+    "html-webpack-plugin": "2.17.0",
+    "npm-check-updates": "2.6.4",
+    "rimraf": "2.5.2",
+    "typings": "0.8.1",
+    "webpack": "1.13.0",
+    "webpack-dev-server": "1.14.1",
+    "webpack-stream": "3.2.0"
+  },
+  "license": "GPL-3.0+"
+}
