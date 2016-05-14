@@ -1,6 +1,6 @@
 // webpack Phaser hacks
 import 'pixi'
 import 'p2'
-import 'phaser'
+import Phaser from 'phaser'
 
 export default Phaser
