@@ -1,9 +1,9 @@
 const Palette = {
   WHITE: 0xfffdec,
-  GREEN: 0x8deb74,
-  RED: 0xff0000,
-  GOLD: 0xffc600,
-  BLACK: 0x111111,
+  GREEN: 0x73db58,
+  RED: 0xffaaaa,
+  GOLD: 0xf3db58,
+  BLACK: 0x1f1f1f,
   YELLOW: 0xffffd8
 }
 
