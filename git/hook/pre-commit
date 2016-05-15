@@ -5,7 +5,7 @@ set -euo pipefail
 #       for specific files.
 
 git diff --cached --name-only --relative \*.js |
-xargs -rd\\n eslint
+xargs -rd\\n eslint --max-warnings 0
 
 git diff --cached --name-only --relative \*.json |
 xargs -rd\\n jsonlint -q
