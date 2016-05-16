@@ -11,6 +11,18 @@ rules:
   strict: [2, 'never']
   prefer-const: [1]
   spaced-comment: [1]
+  require-jsdoc:
+  - 1
+  - require:
+      MethodDefinition: true
+      ClassDeclaration: true
+  valid-jsdoc:
+  - 1
+  - prefer:
+      return: 'returns'
+    requireReturn: false
+    requireParamDescription: false
+    requireReturnDescription: false
 env:
   browser: true
   commonjs: true
