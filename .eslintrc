@@ -11,6 +11,7 @@ rules:
   strict: [2, 'never']
   prefer-const: [1]
   spaced-comment: [1]
+  no-var: [1]
   require-jsdoc:
   - 1
   - require:
