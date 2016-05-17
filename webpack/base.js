@@ -5,6 +5,7 @@ import webpack from 'webpack'
 const ROOT_DIR = '..'
 const SRC_DIR = './src'
 
+// https://github.com/photonstorm/phaser#webpack
 // https://github.com/photonstorm/phaser/issues/1974#issuecomment-186923141
 const PHASER = function() {
   const dir = './node_modules/phaser/build/custom'
@@ -14,9 +15,8 @@ const PHASER = function() {
 
   return {
     loaders: [
-      { test: phaser, loader: 'expose?Phaser' },
-      { test: pixi, loader: 'expose?PIXI' },
-      { test: p2, loader: 'expose?p2' }
+      { test: pixi, loader: 'script' },
+      { test: p2, loader: 'script' }
     ],
     aliases: {
       'phaser': phaser,
@@ -40,6 +40,7 @@ module.exports = {
     })
   ],
   module: {
+    preLoaders: [{ test: /\.js$/, loader: 'source-map-loader' }],
     loaders: [
       {
         test: /\.js$/,
