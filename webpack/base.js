@@ -34,7 +34,6 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(SRC_DIR, 'index.html')
@@ -45,6 +44,8 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
+        // Override ../.babelrc which is used by gulpfile.babel.js.
+        presets: 'es2015-webpack',
         query: {
           only: SRC_DIR
         }
