@@ -12,6 +12,7 @@ rules:
   prefer-const: [1]
   spaced-comment: [1]
   no-var: [1]
+  quotes: [1, 'single', {avoidEscape: true}]
   require-jsdoc:
   - 1
   - require:
