@@ -19,7 +19,7 @@
     "node": "6.1.0"
   },
   "dependencies": {
-    "phaser": "2.4.7"
+    "phaser": "2.4.8"
   },
   "devDependencies": {
     "babel-core": "6.8.0",

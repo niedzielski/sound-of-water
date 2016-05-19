@@ -1,7 +1,7 @@
 {
   "globalDependencies": {
-    "p2": "github:photonstorm/phaser/typescript/p2.d.ts#v2.4.7",
-    "phaser.comments": "github:photonstorm/phaser/typescript/phaser.comments.d.ts#v2.4.7",
-    "pixi.comments": "github:photonstorm/phaser/typescript/pixi.comments.d.ts#v2.4.7"
+    "p2": "github:photonstorm/phaser/typescript/p2.d.ts#v2.4.8",
+    "phaser.comments": "github:photonstorm/phaser/typescript/phaser.comments.d.ts#v2.4.8",
+    "pixi.comments": "github:photonstorm/phaser/typescript/pixi.comments.d.ts#v2.4.8"
   }
 }
