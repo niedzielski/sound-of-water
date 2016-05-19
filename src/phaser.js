@@ -1,6 +1,7 @@
-// webpack Phaser hacks
-import 'pixi'
-import 'p2'
-import Phaser from 'phaser'
+// eslint-disable-next-line spaced-comment,max-len
+/// <reference path="../typings/globals/phaser.comments/index.d.ts" />
+require('pixi')
 
-export default Phaser
+require('p2')
+const Phaser = require('phaser')
+module.exports = Phaser

@@ -1,4 +1,4 @@
-const Palette = {
+module.exports = {
   WHITE: 0xfffdec,
   GREEN: 0x73db58,
   RED: 0xffaaaa,
@@ -7,5 +7,3 @@ const Palette = {
   YELLOW: 0xffffd8,
   BLUE: 0x64bcff
 }
-
-export default Palette
