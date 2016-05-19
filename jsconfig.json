@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "allowSyntheticDefaultImports": true
+    "target": "es2015"
   },
-	"exclude": [
-    "node_modules",
-    "typings",
-    "dist"
-  ]
+	"files": ["."]
 }
