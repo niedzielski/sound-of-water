@@ -3,5 +3,4 @@
 require('pixi')
 
 require('p2')
-const Phaser = require('phaser')
-module.exports = Phaser
+module.exports = require('phaser')
