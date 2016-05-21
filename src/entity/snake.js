@@ -51,7 +51,7 @@ class Snake extends Entity {
     if (this._bitePt) {
       this._updateUncoil(x, y)
     } else if (this._timer % 360 < 60) {
-      this._updateTongue(x, y - 1)
+      this._updateTongueFlick(x, y - 1)
     }
 
     // todo: use time not updates.
@@ -92,7 +92,7 @@ class Snake extends Entity {
   /** @param {int} x
       @param {int} y
       @return {void} */
-  _updateTongue(x, y) {
+  _updateTongueFlick(x, y) {
     this._gfx.lineStyle(1, Palette.RED)
     Gfx.pixel(this._gfx, x, y)
   }
