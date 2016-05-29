@@ -16,7 +16,7 @@
     "start": "gulp"
   },
   "engines": {
-    "node": "6.1.0"
+    "node": "6.2.0"
   },
   "dependencies": {
     "phaser": "2.4.8"
@@ -37,12 +37,12 @@
     "gulp-eslint": "2.0.0",
     "gulp-eslint-threshold": "0.1.1",
     "gulp-jsonlint": "1.1.2",
-    "html-webpack-plugin": "2.17.0",
+    "html-webpack-plugin": "2.18.0",
     "npm-check-updates": "2.6.5",
     "rimraf": "2.5.2",
     "script-loader": "0.7.0",
     "source-map-loader": "0.1.5",
-    "typescript": "1.9.0-dev.20160519-1.0",
+    "typescript": "1.9.0-dev.20160527-1.0",
     "typings": "1.0.4",
     "webpack": "2.1.0-beta.7",
     "webpack-dev-server": "2.1.0-beta.0",
