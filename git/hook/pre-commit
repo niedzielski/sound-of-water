@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# TODO: use the Gulp lint task. This requires adding support to Gulp
+# todo: use the Gulp lint task. This requires adding support to Gulp
 #       for specific files.
+
+# todo: only lint the staged file. The current implementation lints the
+#       file on disk which may not be fully staged.
 
 git diff --cached --name-only --relative \*.js |
 xargs -rd\\n eslint --max-warnings 0
