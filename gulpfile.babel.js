@@ -1,4 +1,6 @@
 /* eslint-disable node/no-unpublished-import */
+// Most of these dependencies should appear only in devDependencies since this
+// is a build script.
 import WebpackDevCfg from './webpack/dev'
 import del from 'del'
 import eslint from 'gulp-eslint'
