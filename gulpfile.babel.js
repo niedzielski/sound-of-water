@@ -19,7 +19,7 @@ const JS_FILES = [path.resolve(SRC_DIR, '**.js'),
   path.resolve(WEBPACK_DIR, '**.js'), '.eslintrc.js', '*.js']
 const JSON_FILES = [path.resolve(SRC_DIR, '**.json'), '*.json']
 
-gulp.task('lint', ['jsonlint', 'jslint'])
+gulp.task('lint', ['jsonlint', 'eslint'])
 
 gulp.task('jsonlint', () =>
   gulp
@@ -28,7 +28,7 @@ gulp.task('jsonlint', () =>
     .pipe(jsonlint.reporter())
 )
 
-gulp.task('jslint', () =>
+gulp.task('eslint', () =>
   gulp
     .src(JS_FILES)
     .pipe(eslint())
