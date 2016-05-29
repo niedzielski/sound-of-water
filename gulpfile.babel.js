@@ -1,12 +1,13 @@
+/* eslint-disable node/no-unpublished-import */
+import WebpackDevCfg from './webpack/dev'
+import del from 'del'
 import eslint from 'gulp-eslint'
+import eslintThreshold from 'gulp-eslint-threshold'
 import gulp from 'gulp'
-import webpackStream from 'webpack-stream'
 import jsonlint from 'gulp-jsonlint'
 import path from 'path'
-import del from 'del'
-import eslintThreshold from 'gulp-eslint-threshold'
-
-import WebpackDevCfg from './webpack/dev'
+import webpackStream from 'webpack-stream'
+/* eslint-enable node/no-unpublished-import */
 
 const SRC_DIR = './src'
 const DIST_DIR = './dist'
@@ -16,27 +17,27 @@ const JSON_FILES = [path.resolve(SRC_DIR, '**.json'), '*.json']
 
 gulp.task('lint', ['jsonlint', 'jslint'])
 
-gulp.task('jsonlint', () => {
-  return gulp
+gulp.task('jsonlint', () =>
+  gulp
     .src(JSON_FILES)
     .pipe(jsonlint())
     .pipe(jsonlint.reporter())
-})
+)
 
-gulp.task('jslint', () => {
-  return gulp
+gulp.task('jslint', () =>
+  gulp
     .src(JS_FILES)
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
-    .pipe(eslintThreshold.afterWarnings(0, (warnings) => {
+    .pipe(eslintThreshold.afterWarnings(0, warnings => {
       throw new Error(`${warnings} ESLint warnings`)
     }))
-})
+)
 
-gulp.task('clean', () => {
-  return del(DIST_DIR)
-})
+gulp.task('clean', () =>
+  del(DIST_DIR)
+)
 
 gulp.task('default', ['pack:dev'])
 
@@ -45,10 +46,9 @@ gulp.task('pack:dev', bundleTask(WebpackDevCfg))
 /** @param {object} cfg
     @return {function} */
 function bundleTask(cfg) {
-  return () => {
-    return gulp
+  return () =>
+    gulp
       .src(SRC_DIR)
       .pipe(webpackStream(cfg))
       .pipe(gulp.dest(DIST_WWW_DIR))
-  }
 }
