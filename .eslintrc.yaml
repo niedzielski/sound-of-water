@@ -16,8 +16,7 @@ plugins: [
   # flowtype,
   jsdoc,
   node,
-  promise,
-  spellcheck
+  promise
 ]
 
 # http://eslint.org/docs/rules/
@@ -255,20 +254,6 @@ rules:
   # https://www.npmjs.com/package/eslint-plugin-promise#rule
   promise/always-return: 2
   promise/param-names: 2
-
-  spellcheck/spell-checker: [1, {
-      skipWords: [
-        cfg,
-        del,
-        dev,
-        eslint,
-        jslint,
-        jsonlint,
-        src,
-        webpack
-      ]
-    }
-  ]
 
 settings:
   # https://www.npmjs.com/package/eslint-plugin-jsdoc#eslint-plugin-jsdoc-settings-alias-preference
