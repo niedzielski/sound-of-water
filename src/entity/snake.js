@@ -3,9 +3,9 @@ const Gfx = require('../gfx')
 const Palette = require('../palette')
 const Entity = require('./entity')
 
-/** Upside down snake. When coiled, appears as an upside down triangle. When
-    biting, uncoils to the bite point. Additionally, when coiled, occasionally
-    flicks its tongue.
+/** Coiled upside down snake. When coiled, appears as an upside down triangle.
+    When biting, uncoils to the bite point. Additionally, when coiled,
+    occasionally flicks its tongue.
 
     coil
       3|ooooo
@@ -21,15 +21,15 @@ const Entity = require('./entity')
     @prop {Phaser.Graphics} gfx
 */
 class Snake extends Entity {
-  /** @param {Phaser.Graphics} gfx */
+  /** @arg {Phaser.Graphics} gfx */
   constructor(gfx) {
     super(gfx)
     this._bitePt = null
     this._timer = 60
   }
 
-  /** @param {int} width
-      @param {int} height
+  /** @arg {int} width
+      @arg {int} height
       @return {void} */
   update(width, height) {
     super.update(width, height)
@@ -48,14 +48,23 @@ class Snake extends Entity {
       y += 2
     }
 
-    if (this._bitePt) {
-      this._updateUncoil(x, y)
-    } else if (this._timer % 360 < 60) {
-      this._updateTongueFlick(x, y - 1)
-    }
+    if (this._bitePt) this._updateUncoil(x, y)
+    else this._checkFlick(x, y)
 
     // todo: use time not updates.
     this._timer += 1
+  }
+
+  _checkFlick(x, y) {
+    const fps = 60
+    const periodSecs = 6
+    const periodFrames = fps * periodSecs
+    const flickPeriodSecs = 1
+    const flickPeriodFrames = fps * flickPeriodSecs
+
+    if (this._timer % periodFrames < flickPeriodFrames) {
+      this._updateTongueFlick(x, y - 1)
+    }
   }
 
   /** @param {Phaser.Point} pt
@@ -107,7 +116,7 @@ class Snake extends Entity {
       @return {int} The width in links (columns or pixels) of the given coil
                     (row). */
   _links(coil) {
-    return coil === 0 ? 0 : (2 * coil - 1)
+    return coil === 0 ? 0 : 2 * coil - 1
   }
 
   /** @param {int} links The total number of links (columns or pixels).

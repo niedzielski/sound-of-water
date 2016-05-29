@@ -7,7 +7,7 @@ let game
 /** @return {void} */
 (function main() {
   game = new Phaser.Game({width: '100%', height: '100%', renderer: Phaser.AUTO,
-    parent: '', state: { preload: onPreload, update: scene.update },
+    parent: '', state: {preload: onPreload, update: scene.update},
     transparent: false, antialias: false})
 })()
 
@@ -17,7 +17,7 @@ function onPreload() {
   Phaser.Canvas.setImageRenderingCrisp(game.canvas)
 
   game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE
-  game.scale.setResizeCallback(onResize, this)
+  game.scale.setResizeCallback(onResize, null)
 
   // Force initial frame to scale.
   resize(game)
@@ -39,7 +39,7 @@ function onResize(game) {
   const deltaWidth = Math.abs(window.innerWidth - game.width)
   const deltaHeight = Math.abs(window.innerHeight - game.height)
   const delta = deltaWidth + deltaHeight
-  console.log(`onResize delta=${delta}`)
+  console.log(`onResize delta=${delta}`) // eslint-disable-line no-console
   if (delta > threshold) {
     resize()
   }

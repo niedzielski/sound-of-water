@@ -11,7 +11,11 @@ class Blueberry extends Entity {
     this._gfx.drawRect(0, 0, 2, 2)
     this._gfx.endFill()
     this._gfx.x = 5
-    this._gfx.y = height / 2 - 4
+    const blueberryHeight = 2
+    const antHeight = 1
+    const floorHeight = 1
+    const offset = blueberryHeight + antHeight + floorHeight
+    this._gfx.y = height / 2 - offset
   }
 }
 module.exports = Blueberry

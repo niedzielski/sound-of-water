@@ -56,10 +56,12 @@ module.exports.update = update
 /** @param {Phaser.Game} game
     @return {Phaser.Point} nullable world position. */
 function mousePointerDown(game) {
+  let pt
   if (game.input.mousePointer.isDown) {
-    return new Phaser.Point(game.input.worldX, game.input.worldY)
+    pt = new Phaser.Point(game.input.worldX, game.input.worldY)
   } else if (game.input.pointer1.isDown) {
-    return new Phaser.Point(game.input.pointer1.worldX,
+    pt = new Phaser.Point(game.input.pointer1.worldX,
       game.input.pointer1.worldY)
   }
+  return pt
 }

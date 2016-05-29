@@ -1,6 +1,8 @@
+/* eslint-disable node/no-unpublished-import */
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 import webpack from 'webpack'
+/* eslint-enable node/no-unpublished-import */
 
 const ROOT_DIR = '..'
 const SRC_DIR = './src'
@@ -15,13 +17,13 @@ const PHASER = function() {
 
   return {
     loaders: [
-      { test: pixi, loader: 'script' },
-      { test: p2, loader: 'script' }
+      {test: pixi, loader: 'script'},
+      {test: p2, loader: 'script'}
     ],
     aliases: {
-      'phaser': phaser,
-      'pixi': pixi,
-      'p2': p2
+      phaser,
+      pixi,
+      p2
     }
   }
 }()
@@ -40,7 +42,7 @@ module.exports = {
     })
   ],
   module: {
-    preLoaders: [{ test: /\.js$/, loader: 'source-map-loader' }],
+    preLoaders: [{test: /\.js$/, loader: 'source-map-loader'}],
     loaders: [
       {
         test: /\.js$/,

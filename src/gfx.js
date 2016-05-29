@@ -15,8 +15,14 @@ function bline(gfx, p0, p1) {
   pixel(gfx, p0.x, p0.y)
   while (p0.x !== p1.x || p0.y !== p1.y) {
     const prevErr = err
-    if (prevErr > -dx) { err -= dy; p0.x += sx }
-    if (prevErr < dy) { err += dx; p0.y += sy }
+    if (prevErr > -dx) {
+      err -= dy
+      p0.x += sx
+    }
+    if (prevErr < dy) {
+      err += dx
+      p0.y += sy
+    }
     pixel(gfx, p0.x, p0.y)
   }
 }
@@ -31,6 +37,7 @@ function pixel(gfx, x, y) {
   // try to antialias on boundaries even with
   // Phaser.Canvas.setImageRenderingCrisp enabled. Use a tiny width and diameter
   // so the chance of bleeding into other pixels is small.
-  gfx.drawCircle(x, y, .01)
+  const diameter = .01
+  gfx.drawCircle(x, y, diameter)
 }
 module.exports.pixel = pixel
