@@ -39,29 +39,16 @@ function preload(game) {
 
   snake = new Snake(game)
   entities.push(snake)
+
+  game.input.onDown.add(pt => {
+    snake.bite(new Phaser.Point(pt.worldX, pt.worldY))
+  })
 }
 module.exports.preload = preload
 
-/** @param {Phaser.Game} game
+/** @param {Phaser.Game} _game
     @return {void} */
-function update(game) {
-  const pt = mousePointerDown(game)
-  if (pt) {
-    snake.bite(pt)
-  }
+function update(_game) {
   entities.update(exports.width, exports.height)
 }
 module.exports.update = update
-
-/** @param {Phaser.Game} game
-    @return {Phaser.Point} nullable world position. */
-function mousePointerDown(game) {
-  let pt
-  if (game.input.mousePointer.isDown) {
-    pt = new Phaser.Point(game.input.worldX, game.input.worldY)
-  } else if (game.input.pointer1.isDown) {
-    pt = new Phaser.Point(game.input.pointer1.worldX,
-      game.input.pointer1.worldY)
-  }
-  return pt
-}
