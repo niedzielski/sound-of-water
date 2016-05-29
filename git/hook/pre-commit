@@ -5,7 +5,8 @@ set -euo pipefail
 #       for specific files.
 
 # todo: only lint the staged file. The current implementation lints the
-#       file on disk which may not be fully staged.
+#       file on disk which may not be fully staged. This can cause both
+#       false positives and negatives.
 
 git diff --cached --name-only --relative \*.js |
 xargs -rd\\n eslint --max-warnings 0
