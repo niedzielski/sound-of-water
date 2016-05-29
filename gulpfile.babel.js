@@ -16,7 +16,7 @@ const WEBPACK_DIR = './webpack'
 const DIST_DIR = './dist'
 const DIST_WWW_DIR = path.resolve(DIST_DIR, 'www')
 const JS_FILES = [path.resolve(SRC_DIR, '**.js'),
-  path.resolve(WEBPACK_DIR, '**.js'), '*.js']
+  path.resolve(WEBPACK_DIR, '**.js'), '.eslintrc.js', '*.js']
 const JSON_FILES = [path.resolve(SRC_DIR, '**.json'), '*.json']
 
 gulp.task('lint', ['jsonlint', 'jslint'])

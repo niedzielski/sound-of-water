@@ -1,2 +1,3 @@
 /typings/
 /dist/
+!/.eslintrc.js
