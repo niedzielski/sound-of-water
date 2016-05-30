@@ -57,8 +57,12 @@ module.exports = {
     'no-unreachable': 2,
     'no-unsafe-finally': 2,
     'use-isnan': 2,
-    // Use jsdoc plugin instead of valid-jsdoc.
+    // todo: use eslint-plugin-jsdoc instead of valid-jsdoc.
+    // https://github.com/gajus/eslint-plugin-jsdoc/issues/14
+    // todo: better yet, use Flow instead of jsdoc plugin.
     // https://github.com/gajus/eslint-plugin-jsdoc/issues/1#issuecomment-182400324
+    'valid-jsdoc': [1, {requireReturn: true, requireParamDescription: false,
+       requireReturnDescription: false}],
     'valid-typeof': 2,
 
     // Best Practices
@@ -189,6 +193,9 @@ module.exports = {
     'padded-blocks': [1, 'never'],
     'quote-props': [1, 'as-needed'],
     quotes: [1, 'single', {avoidEscape: true}],
+    // todo: use Flow instead of JSDoc for typing.
+    // https://github.com/gajus/eslint-plugin-jsdoc/issues/1#issuecomment-184328594
+    'require-jsdoc': [1, {require: {MethodDefinition: true}}],
     semi: [1, 'never'],
     'semi-spacing': 1,
     'space-before-blocks': 1,
@@ -243,8 +250,12 @@ module.exports = {
     'jsdoc/check-types': 1,
     'jsdoc/newline-after-description': [1, 'never'],
     'jsdoc/require-description-complete-sentence': 1,
-    // Use flowtype instead of jsdoc for typing.
+    // todo: use Flow instead of JSDoc for typing.
     // https://github.com/gajus/eslint-plugin-jsdoc/issues/1#issuecomment-184328594
+    'jsdoc/require-param': 1,
+    'jsdoc/require-param-type': 1,
+    // 'jsdoc/require-returns': 1, https://github.com/gajus/eslint-plugin-jsdoc/issues/14
+    'jsdoc/require-returns-type': 1,
 
     // https://www.npmjs.com/package/eslint-plugin-node#rules
     'node/no-deprecated-api': 2,
