@@ -1,14 +1,17 @@
-/** Rendered actor. */
 class Entity {
-  /** @param {Phaser.Game} game */
+  /** @arg {Phaser.Game} game */
   constructor(game) {
     this._gfx = game.add.graphics()
   }
 
-  /** @param {int} width
-      @param {int} height
-      @return {void} */
-  update(width, height) { }
+  /**
+   * @arg {int} _width
+   * @arg {int} _height
+   * @return {void}
+   */
+  update(_width, _height) {
+    //
+  }
 
   // todo: consider adding a resize method here. Not everything needs to be
   //       drawn each update.

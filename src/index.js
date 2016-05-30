@@ -25,8 +25,10 @@ function onPreload() {
   scene.preload(game)
 }
 
-/** @param {Phaser.Game} game
-    @return {void} */
+/**
+ * @arg {Phaser.Game} game
+ * @return {void}
+ */
 function onResize(game) {
   // todo: fix this hack. Without a threshold, this callback is invoked in an
   //       infinite loop. It seems to have to do with the game size being larger

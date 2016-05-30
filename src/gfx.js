@@ -1,10 +1,12 @@
-/** Graphics.lineTo seems to be better suited for antialiased lines. Use a
-    classic Bresenham line instead.
-    @param {Phaser.Graphics} gfx
-    @param {Phaser.Point} p0
-    @param {Phaser.Point} p1
-    @return {void}
-    @see http://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */ // eslint-disable-line max-len
+/**
+ * Phaser.Graphics.lineTo seems to be better suited for antialiased lines. Use a
+ * classic Bresenham line instead.
+ * @arg {Phaser.Graphics} gfx
+ * @arg {Phaser.Point} p0
+ * @arg {Phaser.Point} p1
+ * @return {void}
+ * @see http://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript
+ */
 function bline(gfx, p0, p1) {
   let x0 = Math.round(p0.x)
   let y0 = Math.round(p0.y)
@@ -33,10 +35,12 @@ function bline(gfx, p0, p1) {
 }
 module.exports.bline = bline
 
-/** @param {Phaser.Graphics} gfx
-    @param {number} x
-    @param {number} y
-    @return {void} */
+/**
+ * @arg {Phaser.Graphics} gfx
+ * @arg {number} x
+ * @arg {number} y
+ * @return {void}
+ */
 function pixel(gfx, x, y) {
   // Phaser / PIXI doesn't expose a set pixel method and Canvas / WebGL seem to
   // try to antialias on boundaries even with

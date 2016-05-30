@@ -3,9 +3,11 @@ const Palette = require('../palette')
 
 /** Rendered actor. */
 class Ant extends Entity {
-  /** @param {int} width
-      @param {int} height
-      @return {void} */
+  /**
+   * @arg {int} width
+   * @arg {int} height
+   * @return {void}
+   */
   update(width, height) {
     super.update(width, height)
     this._gfx.beginFill(Palette.BLACK)

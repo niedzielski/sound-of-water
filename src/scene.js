@@ -27,8 +27,10 @@ function resizeToScreenWidth() {
 }
 module.exports.resizeToScreenWidth = resizeToScreenWidth
 
-/** @param {Phaser.Game} game
-    @return {void} */
+/**
+ * @arg {Phaser.Game} game
+ * @return {void}
+ */
 function preload(game) {
   game.stage.backgroundColor = Palette.WHITE
 
@@ -46,8 +48,10 @@ function preload(game) {
 }
 module.exports.preload = preload
 
-/** @param {Phaser.Game} _game
-    @return {void} */
+/**
+ * @arg {Phaser.Game} _game
+ * @return {void}
+ */
 function update(_game) {
   entities.update(exports.width, exports.height)
 }

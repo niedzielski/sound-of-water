@@ -28,9 +28,11 @@ class Snake extends Entity {
     this._timer = 60
   }
 
-  /** @arg {int} width
-      @arg {int} height
-      @return {void} */
+  /**
+   * @arg {int} width
+   * @arg {int} height
+   * @return {void}
+   */
   update(width, height) {
     super.update(width, height)
 
@@ -55,6 +57,11 @@ class Snake extends Entity {
     this._timer += 1
   }
 
+  /**
+   * @arg {int} x
+   * @arg {int} y
+   * @return {void}
+   */
   _checkFlick(x, y) {
     const fps = 60
     const periodSecs = 6
@@ -67,21 +74,27 @@ class Snake extends Entity {
     }
   }
 
-  /** @param {Phaser.Point} pt
-      @return {void} */
+  /**
+   * @arg {Phaser.Point} pt
+   * @return {void}
+   */
   bite(pt) {
     this._bitePt = this._worldToLocal(pt)
   }
 
-  /** @param {int} height The scene height.
-      @return {int} The number of coil links. */
+  /**
+   * @arg {int} height The scene height.
+   * @return {int} The number of coil links.
+   */
   _coilLinks(height) {
     const links = Math.sqrt(2 * height * height)
     return links - this._uncoilLinks(links)
   }
 
-  /** @param {int} links The total number of links.
-      @return {int} The number of uncoil links (>= 0 && <= links). */
+  /**
+   * @arg {int} links The total number of links.
+   * @return {int} The number of uncoil links (>= 0 && <= links).
+   */
   _uncoilLinks(links) {
     if (!this._bitePt) return 0
     const x = this._bitePt.x
@@ -89,38 +102,48 @@ class Snake extends Entity {
     return Math.min(links, Math.sqrt(x * x + y * y))
   }
 
-  /** @param {int} x The x coordinate of the uncoil anchor.
-      @param {int} y The y coordinate of the uncoil anchor.
-      @return {void} */
+  /**
+   * @arg {int} x The x coordinate of the uncoil anchor.
+   * @arg {int} y The y coordinate of the uncoil anchor.
+   * @return {void}
+   */
   _updateUncoil(x, y) {
     Gfx.bline(this._gfx, new Phaser.Point(x, y - 1), this._bitePt)
     this._bitePt = null
     this._timer = 60
   }
 
-  /** @param {int} x
-      @param {int} y
-      @return {void} */
+  /**
+   * @arg {int} x
+   * @arg {int} y
+   * @return {void}
+   */
   _updateTongueFlick(x, y) {
     this._gfx.lineStyle(1, Palette.RED)
     Gfx.pixel(this._gfx, x, y)
   }
 
-  /** @param {Phaser.Point} pt
-      @return {Phaser.Point} */
+  /**
+   * @arg {Phaser.Point} pt
+   * @return {Phaser.Point}
+   */
   _worldToLocal(pt) {
     return pt.subtract(this._gfx.position.x, this._gfx.position.y)
   }
 
-  /** @param {int} coil The coil (row) to reference.
-      @return {int} The width in links (columns or pixels) of the given coil
-                    (row). */
+  /**
+   * @arg {int} coil The coil (row) to reference.
+   * @return {int} The width in links (columns or pixels) of the given coil
+   *               (row).
+   */
   _links(coil) {
     return coil === 0 ? 0 : 2 * coil - 1
   }
 
-  /** @param {int} links The total number of links (columns or pixels).
-      @return {int} The number of coils (rows) allowed. */
+  /**
+   * @arg {int} links The total number of links (columns or pixels).
+   * @return {int} The number of coils (rows) allowed.
+   */
   _coils(links) {
     return Math.floor(Math.sqrt(links))
   }

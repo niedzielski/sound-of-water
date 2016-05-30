@@ -47,8 +47,10 @@ gulp.task('default', ['pack:dev'])
 
 gulp.task('pack:dev', bundleTask(WebpackDevCfg))
 
-/** @param {object} cfg
-    @return {function} */
+/**
+ * @arg {Object} cfg
+ * @return {Function}
+ */
 function bundleTask(cfg) {
   return () =>
     gulp
