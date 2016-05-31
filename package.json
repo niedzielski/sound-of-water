@@ -11,7 +11,7 @@
   },
   "scripts": {
     "postinstall": "typings i",
-    "update": "ncu -au",
+    "update": "ncu -atu",
     "clean": "rimraf node_modules typings",
     "start": "gulp"
   },
