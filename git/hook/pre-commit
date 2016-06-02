@@ -4,12 +4,20 @@ set -euo pipefail
 # todo: use the Gulp lint task. This requires adding support to Gulp
 #       for specific files.
 
-# todo: only lint the staged file. The current implementation lints the
-#       file on disk which may not be fully staged. This can cause both
-#       false positives and negatives.
+# $@ cmd
+xargs-map-to-bash() { xargs -0rd\\n -I{} bash -c "$@" -- '{}'; }
 
-git diff --cached --name-only --relative \*.js |
-xargs -rd\\n eslint --max-warnings 0
+# $@ glob
+git-staged-files() {
+  git diff --cached -C -C -z --name-only --relative --diff-filter=ACMRTUXB -- "$@"
+}
 
-git diff --cached --name-only --relative \*.json |
-xargs -rd\\n jsonlint -q
+git-staged-files \*.js|
+xargs-map-to-bash '
+  git show ":$1"|
+  eslint --max-warnings 0 --stdin --stdin-filename "$1"'
+
+git-staged-files \*.json|
+xargs-map-to-bash '
+  git show ":$1"|
+  jsonlint -q'
