@@ -4,20 +4,22 @@ set -euo pipefail
 # todo: use the Gulp lint task. This requires adding support to Gulp
 #       for specific files.
 
-# $@ cmd
-xargs-map-to-bash() { xargs -0rd\\n -I{} bash -c "$@" -- '{}'; }
-
 # $@ glob
 git-staged-files() {
   git diff --cached -C -C -z --name-only --relative --diff-filter=ACMRTUXB -- "$@"
 }
 
+# $@ name
+map() { IFS= read -rd $'\0' "$@"; }
+
 git-staged-files \*.js|
-xargs-map-to-bash '
-  git show ":$1"|
-  eslint --max-warnings 0 --stdin --stdin-filename "$1"'
+while map file; do
+  git show ":$file"|
+  eslint --max-warnings 0 --stdin --stdin-filename "$file"
+done
 
 git-staged-files \*.json|
-xargs-map-to-bash '
-  git show ":$1"|
-  jsonlint -q'
+while map file; do
+  git show ":$file"|
+  jsonlint -q
+done
