@@ -21,5 +21,7 @@ done
 git-staged-files \*.json|
 while map file; do
   git show ":$file"|
-  jsonlint -q
+
+  # todo: use -q when https://github.com/zaach/jsonlint/issues/41 is fixed.
+  jsonlint > /dev/null
 done
