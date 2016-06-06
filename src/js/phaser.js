@@ -1,11 +1,8 @@
-// eslint-disable-next-line spaced-comment
-/// <reference path="../../typings/globals/phaser.comments/index.d.ts" />
+/// <reference path="../../node_modules/phaser/typescript/phaser.comments.d.ts" />
 
-// A custom version of Pixi.js and specific version of P2.js are included in
-// Phaser.
-// eslint-disable-next-line node/no-missing-require, node/no-unpublished-require
-require('pixi')
-// eslint-disable-next-line node/no-missing-require, node/no-unpublished-require
-require('p2')
+// https://github.com/photonstorm/phaser#browserify--cjs
+window.PIXI = require('phaser/build/custom/pixi')
+window.p2 = require('phaser/build/custom/p2')
+// window.Phaser = require('phaser/build/custom/phaser-split')
 
 module.exports = require('phaser')

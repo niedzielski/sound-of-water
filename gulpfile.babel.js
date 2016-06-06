@@ -1,60 +1,105 @@
-/* eslint-disable node/no-unpublished-import */
-// Most of these dependencies should appear only in devDependencies since this
-// is a build script.
-import WebpackDevCfg from './webpack/dev'
-import del from 'del'
-import eslint from 'gulp-eslint'
-import eslintThreshold from 'gulp-eslint-threshold'
-import gulp from 'gulp'
-import jsonlint from 'gulp-jsonlint'
-import path from 'path'
-import webpackStream from 'webpack-stream'
-/* eslint-enable node/no-unpublished-import */
+/// <reference path="typings/globals/browserify/index.d.ts" />
+/// <reference path="typings/globals/browser-sync/index.d.ts" />
+/// <reference path="typings/globals/del/index.d.ts" />
+/// <reference path="typings/globals/gulp/index.d.ts" />
+/// <reference path="typings/globals/gulp-cached/index.d.ts" />
+/// <reference path="typings/globals/gulp-if/index.d.ts" />
+/// <reference path="typings/globals/gulp-uglify/index.d.ts" />
+/// <reference path="typings/globals/gulp-util/index.d.ts" />
+/// <reference path="typings/globals/minimist/index.d.ts" />
+/// <reference path="typings/globals/node/index.d.ts" />
+/// <reference path="typings/globals/vinyl-source-stream/index.d.ts" />
+
+// Most of these requires should appear only in devDependencies since this is a
+// build script.
+/* eslint-disable node/no-unpublished-require */
+const babelify = require('babelify')
+const browserify = require('browserify')
+const browserSync = require('browser-sync')
+const cache = require('gulp-cached')
+const del = require('del')
+const eslint = require('gulp-eslint')
+const eslintThreshold = require('gulp-eslint-threshold')
+const exorcist = require('exorcist')
+const gulp = require('gulp')
+const gulpif = require('gulp-if')
+const gutil = require('gulp-util')
+const jsonlint = require('gulp-jsonlint')
+const parseArgs = require('minimist')
+const path = require('path')
+const source = require('vinyl-source-stream')
+const uglify = require('gulp-uglify')
+/* eslint-enable node/no-unpublished-require */
 
 const SRC_DIR = './src'
-const WEBPACK_DIR = './webpack'
+const JS_DIR = path.resolve(SRC_DIR, 'js')
+const STATIC_DIR = path.resolve(SRC_DIR, 'static')
 const DIST_DIR = './dist'
 const DIST_WWW_DIR = path.resolve(DIST_DIR, 'www')
-const JS_FILES = [path.resolve(SRC_DIR, '**.js'),
-  path.resolve(WEBPACK_DIR, '**.js'), '.eslintrc.js', '*.js']
-const JSON_FILES = [path.resolve(SRC_DIR, '**.json'), '*.json']
 
-gulp.task('lint', ['jsonlint', 'eslint'])
+const prod = parseArgs(process.argv.slice(2)).prod
 
-gulp.task('jsonlint', () =>
-  gulp
-    .src(JSON_FILES)
-    .pipe(jsonlint())
-    .pipe(jsonlint.reporter())
-)
+gulp.task('default', ['serveDbg'])
+
+gulp.task('serveDbg', ['build'], () => {
+  browserSync({server: {baseDir: DIST_WWW_DIR}, open: false})
+
+  gulp.watch(path.resolve(STATIC_DIR, '**'),
+    () => copyStatic().pipe(browserSync.stream()))
+  gulp.watch(path.resolve(JS_DIR, '**'),
+    () => pack().pipe(browserSync.stream()))
+})
+
+gulp.task('build', ['copyStatic', 'pack'])
+
+gulp.task('copyStatic', copyStatic)
+/**
+ * @return {NodeJS.ReadWriteStream}
+ */
+function copyStatic() {
+  return gulp.src(path.resolve(STATIC_DIR, '**'))
+    .pipe(gulp.dest(DIST_WWW_DIR))
+}
+
+gulp.task('pack', pack)
+/**
+ * @return {NodeJS.ReadWriteStream}
+ */
+function pack() {
+  const bundleFile = 'bundle.js'
+  const sourceMapFile = path.resolve(DIST_WWW_DIR, bundleFile, '.map')
+  return browserify({entries: JS_DIR, debug: !prod})
+    .transform(babelify)
+    .bundle()
+    .pipe(gulpif(!prod, exorcist(sourceMapFile)))
+    .pipe(source(bundleFile))
+    .pipe(gulpif(prod, uglify()))
+    .pipe(gulp.dest(DIST_WWW_DIR))
+}
+
+gulp.task('clean', () => del(DIST_DIR))
+
+gulp.task('lint', ['eslint', 'jsonlint'])
 
 gulp.task('eslint', () =>
-  gulp
-    .src(JS_FILES)
+  gulp.src([path.resolve(JS_DIR, '**.js'), '*.js', '.*.js'])
+    .pipe(cache('eslint'))
     .pipe(eslint())
     .pipe(eslint.format())
+    .pipe(eslint.result(result => {
+      if (result.warningCount || result.errorCount) {
+        Reflect.deleteProperty(cache.caches.eslint,
+          path.resolve(result.filePath))
+      }
+    }))
     .pipe(eslint.failAfterError())
-    .pipe(eslintThreshold.afterWarnings(0, warnings => {
-      throw new Error(`${warnings} ESLint warnings`)
+    .pipe(eslintThreshold.afterWarnings(0, count => {
+      throw new gutil.PluginError('ESLint', `${count} warnings`)
     }))
 )
 
-gulp.task('clean', () =>
-  del(DIST_DIR)
+gulp.task('jsonlint', () =>
+  gulp.src([path.resolve(SRC_DIR, '**.json'), '*.json'])
+    .pipe(jsonlint())
+    .pipe(jsonlint.reporter())
 )
-
-gulp.task('default', ['pack:dev'])
-
-gulp.task('pack:dev', bundleTask(WebpackDevCfg))
-
-/**
- * @arg {Object} cfg
- * @return {Function}
- */
-function bundleTask(cfg) {
-  return () =>
-    gulp
-      .src(SRC_DIR)
-      .pipe(webpackStream(cfg))
-      .pipe(gulp.dest(DIST_WWW_DIR))
-}
