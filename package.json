@@ -2,13 +2,8 @@
   "name": "sound-of-water",
   "version": "0.0.0",
   "homepage": "https://github.com/rndmem/sound-of-water",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rndmem/sound-of-water.git"
-  },
-  "bugs": {
-    "url": "https://github.com/rndmem/sound-of-water/issues"
-  },
+  "repository": "github:rndmem/sound-of-water",
+  "bugs": "https://github.com/rndmem/sound-of-water/issues",
   "scripts": {
     "postinstall": "typings i",
     "update": "ncu -atu",
