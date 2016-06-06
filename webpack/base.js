@@ -6,6 +6,8 @@ import webpack from 'webpack'
 
 const ROOT_DIR = '..'
 const SRC_DIR = './src'
+const JS_DIR = path.resolve(SRC_DIR, 'js')
+const STATIC_DIR = path.resolve(SRC_DIR, 'static')
 
 // https://github.com/photonstorm/phaser#webpack
 // https://github.com/photonstorm/phaser/issues/1974#issuecomment-186923141
@@ -30,7 +32,7 @@ const PHASER = function() {
 
 module.exports = {
   context: path.resolve(__dirname, ROOT_DIR),
-  entry: SRC_DIR,
+  entry: JS_DIR,
   output: {
     path: path.resolve(__dirname, ROOT_DIR, 'dist/www'),
     filename: 'bundle.js'
@@ -38,7 +40,7 @@ module.exports = {
   plugins: [
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(SRC_DIR, 'index.html')
+      template: path.resolve(STATIC_DIR, 'index.html')
     })
   ],
   module: {
@@ -50,7 +52,7 @@ module.exports = {
         // Override ../.babelrc which is used by gulpfile.babel.js.
         presets: 'es2015-webpack',
         query: {
-          only: SRC_DIR
+          only: JS_DIR
         }
       }
     ].concat(PHASER.loaders)
