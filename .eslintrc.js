@@ -165,7 +165,7 @@ module.exports = {
     'keyword-spacing': 1,
     'linebreak-style': 1,
     'max-depth': 1,
-    'max-len': [1, {tabWidth: 2, ignoreUrls: true}],
+    'max-len': [1, {tabWidth: 2, ignoreUrls: true, ignorePattern: '^/// .+'}],
     'max-nested-callbacks': [1, {max: 4}],
     'max-params': [1, 4], // eslint-disable-line no-magic-numbers
     'max-statements': [1, {max: 20}],
@@ -203,7 +203,7 @@ module.exports = {
     'space-in-parens': [1, 'never'],
     'space-infix-ops': 1,
     'space-unary-ops': 1,
-    'spaced-comment': 1,
+    'spaced-comment': [1, 'always', {markers: ['/']}],
     'unicode-bom': 1,
 
     // ECMAScript 6
