@@ -3,6 +3,7 @@
   "files.exclude": {
     "node_modules": true,
     "typings": true,
-    "dist": true
+    "dist": true,
+    "release": true
   }
 }
