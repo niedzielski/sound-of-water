@@ -21,6 +21,7 @@ const del = require('del')
 const eslint = require('gulp-eslint')
 const eslintThreshold = require('gulp-eslint-threshold')
 const exorcist = require('exorcist')
+const flow = require('gulp-flowtype')
 const gulp = require('gulp')
 const gulpif = require('gulp-if')
 const gutil = require('gulp-util')
@@ -47,24 +48,20 @@ gulp.task('serveDbg', ['build'], () => {
   gulp.watch(path.resolve(STATIC_DIR, '**'),
     () => copyStatic().pipe(browserSync.stream()))
   gulp.watch(path.resolve(JS_DIR, '**'),
-    () => pack().pipe(browserSync.stream()))
+    () => typecheck()
+            .pack()
+            .pipe(browserSync.stream()))
 })
 
-gulp.task('build', ['copyStatic', 'pack'])
+gulp.task('build', ['typecheck', 'copyStatic', 'pack'])
 
 gulp.task('copyStatic', copyStatic)
-/**
- * @return {NodeJS.ReadWriteStream}
- */
 function copyStatic() {
   return gulp.src(path.resolve(STATIC_DIR, '**'))
     .pipe(gulp.dest(DIST_WWW_DIR))
 }
 
 gulp.task('pack', pack)
-/**
- * @return {NodeJS.ReadWriteStream}
- */
 function pack() {
   const bundleFile = 'bundle.js'
   const sourceMapFile = path.resolve(DIST_WWW_DIR, bundleFile, '.map')
@@ -80,6 +77,15 @@ function pack() {
 gulp.task('clean', () => del(DIST_DIR))
 
 gulp.task('lint', ['eslint', 'jsonlint'])
+
+gulp.task('typecheck', typecheck)
+function typecheck() {
+  return gulp.src([path.resolve(JS_DIR, '**.js'), '*.js', '.*.js'])
+    .pipe(flow({
+      // todo: enable once https://github.com/facebook/flow/issues/869 is fixed.
+      all: false
+    }))
+}
 
 gulp.task('eslint', () =>
   gulp.src([path.resolve(JS_DIR, '**.js'), '*.js', '.*.js'])

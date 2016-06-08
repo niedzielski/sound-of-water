@@ -1,0 +1,8 @@
+[ignore]
+# https://github.com/facebook/flow/issues/869
+<PROJECT_ROOT>/node_modules/.*/test/
+<PROJECT_ROOT>/typings/
+<PROJECT_ROOT>/dist/
+
+[options]
+munge_underscores=true

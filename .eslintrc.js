@@ -1,4 +1,5 @@
 module.exports = {
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
@@ -14,9 +15,7 @@ module.exports = {
     es6: true
   },
   plugins: [
-    // Enable when https://github.com/flowtype/flow-for-vscode/issues/13 is
-    // fixed.
-    // 'flowtype',
+    'flowtype',
     'jsdoc',
     'node',
     'promise'
@@ -59,10 +58,7 @@ module.exports = {
     'use-isnan': 2,
     // todo: use eslint-plugin-jsdoc instead of valid-jsdoc.
     // https://github.com/gajus/eslint-plugin-jsdoc/issues/14
-    // todo: better yet, use Flow instead of jsdoc plugin.
-    // https://github.com/gajus/eslint-plugin-jsdoc/issues/1#issuecomment-182400324
-    'valid-jsdoc': [1, {requireReturn: true, requireParamDescription: false,
-       requireReturnDescription: false}],
+    'valid-jsdoc': 1,
     'valid-typeof': 2,
 
     // Best Practices
@@ -193,9 +189,6 @@ module.exports = {
     'padded-blocks': [1, 'never'],
     'quote-props': [1, 'as-needed'],
     quotes: [1, 'single', {avoidEscape: true}],
-    // todo: use Flow instead of JSDoc for typing.
-    // https://github.com/gajus/eslint-plugin-jsdoc/issues/1#issuecomment-184328594
-    'require-jsdoc': [1, {require: {MethodDefinition: true}}],
     semi: [1, 'never'],
     'semi-spacing': 1,
     'space-before-blocks': 1,
@@ -208,7 +201,8 @@ module.exports = {
 
     // ECMAScript 6
     'arrow-body-style': 1,
-    'arrow-parens': [1, 'as-needed'],
+    // todo: enable when https://github.com/babel/babel-eslint/issues/278 is fixed.
+    // 'arrow-parens': [1, 'as-needed'],
     'arrow-spacing': 1,
     'constructor-super': 2,
     'generator-star-spacing': 1,
@@ -235,14 +229,10 @@ module.exports = {
     'template-curly-spacing': 1,
     'yield-star-spacing': 1,
 
-    // Enable when https://github.com/flowtype/flow-for-vscode/issues/13 is
-    // fixed.
     // https://www.npmjs.com/package/eslint-plugin-flowtype#eslint-plugin-flowtype-settings
-    // flowtype/require-parameter-type: 2
-    // flowtype/require-return-type: 2
-    // flowtype/space-after-type-colon: 2
-    // flowtype/space-before-type-colon: 2
-    // flowtype/type-id-match: 2
+    'flowtype/space-after-type-colon': 1,
+    'flowtype/space-before-type-colon': 1,
+    'flowtype/type-id-match': 1,
 
     // https://www.npmjs.com/package/eslint-plugin-jsdoc#eslint-plugin-jsdoc-rules
     'jsdoc/check-param-names': 1,
@@ -250,12 +240,6 @@ module.exports = {
     'jsdoc/check-types': 1,
     'jsdoc/newline-after-description': [1, 'never'],
     'jsdoc/require-description-complete-sentence': 1,
-    // todo: use Flow instead of JSDoc for typing.
-    // https://github.com/gajus/eslint-plugin-jsdoc/issues/1#issuecomment-184328594
-    'jsdoc/require-param': 1,
-    'jsdoc/require-param-type': 1,
-    // 'jsdoc/require-returns': 1, https://github.com/gajus/eslint-plugin-jsdoc/issues/14
-    'jsdoc/require-returns-type': 1,
 
     // https://www.npmjs.com/package/eslint-plugin-node#rules
     'node/no-deprecated-api': 2,

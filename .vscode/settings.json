@@ -1,5 +1,11 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
+
+  // Enable Flow types in JavaScript.
+  // todo: remove when https://github.com/Microsoft/TypeScript/issues/6997 is fixed.
+  // https://code.visualstudio.com/docs/languages/javascript#_disable-syntax-validation-when-using-non-es6-constructs
+  "javascript.validate.enable": false,
+
   "files.exclude": {
     "node_modules": true,
     "typings": true,
