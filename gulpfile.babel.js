@@ -16,6 +16,7 @@
 const babelify = require('babelify')
 const browserify = require('browserify')
 const browserSync = require('browser-sync')
+const buffer = require('gulp-buffer')
 const cache = require('gulp-cached')
 const del = require('del')
 const eslint = require('gulp-eslint')
@@ -64,12 +65,14 @@ function copyStatic() {
 gulp.task('pack', pack)
 function pack() {
   const bundleFile = 'bundle.js'
-  const sourceMapFile = path.resolve(DIST_WWW_DIR, bundleFile, '.map')
-  return browserify({entries: JS_DIR, debug: !prod})
+  // eslint-disable-next-line prefer-template
+  const sourceMapFile = path.resolve(DIST_WWW_DIR, bundleFile + '.map')
+  return browserify({entries: JS_DIR, debug: true})
     .transform(babelify)
     .bundle()
     .pipe(gulpif(!prod, exorcist(sourceMapFile)))
     .pipe(source(bundleFile))
+    .pipe(buffer())
     .pipe(gulpif(prod, uglify()))
     .pipe(gulp.dest(DIST_WWW_DIR))
 }
