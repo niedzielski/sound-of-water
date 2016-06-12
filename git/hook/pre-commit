@@ -1,27 +1,28 @@
 #!/usr/bin/env bash
+# Install with ln -s "$PWD/pre-commit" "$(git rev-parse --show-toplevel)/.git/hooks/"
 set -euo pipefail
-
-# todo: use the Gulp lint task. This requires adding support to Gulp
-#       for specific files.
 
 # $@ glob
 git-staged-files() {
-  git diff --cached -C -C -z --name-only --relative --diff-filter=ACMRTUXB -- "$@"
+  git diff --cached -C -C -z --name-only --relative --diff-filter=ACMRTUXB "$@"
 }
 
 # $@ name
 map() { IFS= read -rd $'\0' "$@"; }
 
-git-staged-files \*.js|
-while map file; do
-  git show ":$file"|
-  eslint --max-warnings 0 --stdin --stdin-filename "$file"
-done
+declare -i errs=0
 
-git-staged-files \*.json|
 while map file; do
+  echo "Checking $file..."
   git show ":$file"|
+  case "$file" in
+    *.js) tee >(npm run -s eslint:stdin "$file")|npm run -s typecheck:stdin "$file" ;;
+    *.json) npm run -s jsonlint:stdin ;;
+    *) (()) ;;
+  esac || ((++errs))
+done < <(git-staged-files \*.js \*.json)
 
-  # todo: use -q when https://github.com/zaach/jsonlint/issues/41 is fixed.
-  jsonlint > /dev/null
-done
+((errs)) && echo -en "\e[31m$errs files with errors.\e[00m " >&2 || :
+
+exec < /dev/tty
+read -p 'Press <enter> to continue, <ctrl-c> to abort: '
