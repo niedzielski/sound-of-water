@@ -1,12 +1,20 @@
 {
   "name": "sound-of-water",
   "version": "0.0.0",
-  "description": "Enjoy the harmony of nature in this sweet game.",
+  "description": "Enjoy the harmony of nature as a member of the garden.",
   "keywords": [
     "Game",
-    "HTML",
-    "JavaScript",
-    "Electron"
+    "Snake",
+    "Simulation",
+    "Atmosphere",
+    "Pixel",
+    "8-bit",
+    "Synthesis",
+    "Adventure",
+    "Fun",
+    "Electron",
+    "Android",
+    "JavaScript"
   ],
   "homepage": "https://github.com/rndmem/sound-of-water",
   "repository": "github:rndmem/sound-of-water",
