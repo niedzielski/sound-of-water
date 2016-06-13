@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 module.exports = {
   parser: 'babel-eslint',
   parserOptions: {
@@ -136,7 +137,7 @@ module.exports = {
     'no-use-before-define': [2, 'nofunc'],
 
     // Node.js and CommonJS
-    'callback-return': 2,
+    'callback-return': [2, ['cb']],
     'global-require': 1,
     'handle-callback-err': 2,
     'no-mixed-requires': [1, {grouping: true}],
@@ -162,6 +163,7 @@ module.exports = {
     'linebreak-style': 1,
     'max-depth': 1,
     'max-len': [1, {tabWidth: 2, ignoreUrls: true, ignorePattern: '^/// .+'}],
+    'max-lines': [1, {max: 150, skipBlankLines: false, skipComments: false}],
     'max-nested-callbacks': [1, {max: 4}],
     'max-params': [1, 4], // eslint-disable-line no-magic-numbers
     'max-statements': [1, {max: 20}],
@@ -224,6 +226,7 @@ module.exports = {
     'prefer-rest-params': 1,
     'prefer-spread': 1,
     'prefer-template': 1,
+    'rest-spread-spacing': 1,
     'require-yield': 2,
     'sort-imports': 1,
     'template-curly-spacing': 1,
