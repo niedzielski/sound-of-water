@@ -38,6 +38,7 @@
     "typecheck-suggest:file": "flow suggest",
     "lint": "run-p eslint jsonlint",
     "eslint": "eslint --cache --max-warnings 0 .*.js src/js",
+    "eslint:file": "eslint --cache --max-warnings 0",
     "eslint:stdin": "eslint --max-warnings 0 --stdin --stdin-filename",
     "eslint-fix:file": "eslint --cache --fix",
     "jsonlint": "find src *.json -name \\*.json -exec bash -o pipefail -c 'jsonlint -q {} |& sed \"1 s%^%$(echo -en \\\\e[31m){}$(echo -en \\\\e[00m)\\n%; $ s%$%\\n%\"' \\;",
