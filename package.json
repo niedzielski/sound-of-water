@@ -1,6 +1,13 @@
 {
   "name": "sound-of-water",
   "version": "0.0.0",
+  "description": "Enjoy the harmony of nature in this sweet game.",
+  "keywords": [
+    "Game",
+    "HTML",
+    "JavaScript",
+    "Electron"
+  ],
   "homepage": "https://github.com/rndmem/sound-of-water",
   "repository": "github:rndmem/sound-of-water",
   "bugs": "https://github.com/rndmem/sound-of-water/issues",
@@ -11,7 +18,8 @@
     "build": "run-p typecheck pack copy",
     "rebuild": "run-s clean build",
     "pack:watch": "run-p mkdir-dist:www && watchify -dt babelify -o 'cat|run-p exorcist:stdin' src/js",
-    "pack": "run-p mkdir-dist:www && browserify -dt babelify src/js|run-p exorcist:stdin && uglifyjs dist/www/bundle.js --in-source-map dist/www/bundle.js.map --source-map dist/www/bundle.js.map --screw-ie8 -o dist/www/bundle.js -c sequences,properties,dead_code,conditionals,comparisons,evaluate,booleans,loops,unused,hoist_funs,if_return,join_vars,cascade,collapse_vars,negate_iife,passes=3",
+    "pack": "run-p mkdir-dist:www && browserify -dt babelify src/js|run-p exorcist:stdin && run-p uglify",
+    "uglify": "uglifyjs dist/www/bundle.js --in-source-map dist/www/bundle.js.map --source-map dist/www/bundle.js.map --screw-ie8 -o dist/www/bundle.js -c sequences,properties,dead_code,conditionals,comparisons,evaluate,booleans,loops,unused,hoist_funs,if_return,join_vars,cascade,collapse_vars,negate_iife,passes=3",
     "mkdir-dist:www": "mkdir -p dist/www",
     "exorcist:stdin": "exorcist dist/www/bundle.js.map > dist/www/bundle.js",
     "copy": "cpx src/static/** dist/www/",
