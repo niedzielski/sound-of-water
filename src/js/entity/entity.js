@@ -1,15 +1,15 @@
+// @flow
+
+const Phaser = require('../phaser')
+
 class Entity {
-  /** @arg {Phaser.Game} game */
-  constructor(game) {
+  _gfx: Phaser.Graphics;
+
+  constructor(game: Phaser.Game) : void {
     this._gfx = game.add.graphics()
   }
 
-  /**
-   * @arg {int} _width
-   * @arg {int} _height
-   * @return {void}
-   */
-  update(_width, _height) {
+  update(_width: number, _height: number) : void {
     //
   }
 
