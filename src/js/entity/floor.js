@@ -1,17 +1,16 @@
-const Entity = require('./entity')
-const Palette = require('../palette')
+// @flow
+
+const
+  Entity = require('./entity'),
+  Palette = require('../palette')
 
 class Floor extends Entity {
-  /**
-   * @arg {int} width
-   * @arg {int} height
-   * @return {void}
-   */
-  update(width, height) {
+  update(width: number, height: number): void {
     super.update(width, height)
-    this._gfx.beginFill(Palette.GOLD)
-    this._gfx.drawRect(Math.floor(-width / 2), height / 2 - 1, width, 1)
-    this._gfx.endFill()
+    this.gfx().beginFill(Palette.GOLD)
+    this.gfx().drawRect(Math.floor(-width / 2), height / 2 - 1, width, 1)
+    this.gfx().endFill()
   }
 }
+
 module.exports = Floor
