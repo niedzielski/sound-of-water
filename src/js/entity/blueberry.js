@@ -1,23 +1,23 @@
-const Entity = require('./entity')
-const Palette = require('../palette')
+// @flow
+
+const
+  Entity = require('./entity'),
+  Palette = require('../palette')
 
 class Blueberry extends Entity {
-  /**
-   * @arg {int} width
-   * @arg {int} height
-   * @return {void}
-   */
-  update(width, height) {
+  update(width: number, height: number): void {
     super.update(width, height)
-    this._gfx.beginFill(Palette.BLUE)
-    this._gfx.drawRect(0, 0, 2, 2)
-    this._gfx.endFill()
-    this._gfx.x = 5
-    const blueberryHeight = 2
-    const antHeight = 1
-    const floorHeight = 1
-    const offset = blueberryHeight + antHeight + floorHeight
-    this._gfx.y = height / 2 - offset
+    this.gfx().beginFill(Palette.BLUE)
+    this.gfx().drawRect(0, 0, 2, 2)
+    this.gfx().endFill()
+    this.gfx().x = 5
+    const
+      blueberryHeight: number = 2,
+      antHeight: number = 1,
+      floorHeight: number = 1,
+      offset: number = blueberryHeight + antHeight + floorHeight
+    this.gfx().y = height / 2 - offset
   }
 }
+
 module.exports = Blueberry
