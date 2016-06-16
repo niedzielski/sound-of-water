@@ -1,20 +1,18 @@
-const Entity = require('./entity')
-const Palette = require('../palette')
+// @flow
 
-/** Rendered actor. */
+const
+  Entity = require('./entity'),
+  Palette = require('../palette')
+
 class Ant extends Entity {
-  /**
-   * @arg {int} width
-   * @arg {int} height
-   * @return {void}
-   */
-  update(width, height) {
+  update(width: number, height: number): void {
     super.update(width, height)
-    this._gfx.beginFill(Palette.BLACK)
-    this._gfx.drawRect(0, 0, 2, 1)
-    this._gfx.endFill()
-    this._gfx.x = 3
-    this._gfx.y = height / 2 - 2
+    this.gfx().beginFill(Palette.BLACK)
+    this.gfx().drawRect(0, 0, 2, 1)
+    this.gfx().endFill()
+    this.gfx().x = 3
+    this.gfx().y = height / 2 - 2
   }
 }
+
 module.exports = Ant

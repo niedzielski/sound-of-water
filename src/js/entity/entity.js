@@ -5,12 +5,16 @@ const Phaser = require('../phaser')
 class Entity {
   _gfx: Phaser.Graphics;
 
-  constructor(game: Phaser.Game) : void {
+  constructor(game: Phaser.Game): void {
     this._gfx = game.add.graphics()
   }
 
-  update(_width: number, _height: number) : void {
+  update(_width: number, _height: number): void {
     //
+  }
+
+  gfx(): Phaser.Graphics {
+    return this._gfx
   }
 
   // todo: consider adding a resize method here. Not everything needs to be
