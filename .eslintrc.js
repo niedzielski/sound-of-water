@@ -185,7 +185,7 @@ module.exports = {
     'no-unneeded-ternary': 1,
     'no-whitespace-before-property': 1,
     'object-curly-spacing': 1,
-    'one-var': [2, {var: 'always', let: 'never', const: 'never'}],
+    'one-var': [2, {var: 'always', let: 'always', const: 'always'}],
     'operator-assignment': 1,
     'operator-linebreak': [1, 'before'],
     'padded-blocks': [1, 'never'],
