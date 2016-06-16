@@ -57,9 +57,6 @@ module.exports = {
     'no-unreachable': 2,
     'no-unsafe-finally': 2,
     'use-isnan': 2,
-    // todo: use eslint-plugin-jsdoc instead of valid-jsdoc.
-    // https://github.com/gajus/eslint-plugin-jsdoc/issues/14
-    'valid-jsdoc': 1,
     'valid-typeof': 2,
 
     // Best Practices
